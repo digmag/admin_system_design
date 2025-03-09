@@ -17,7 +17,7 @@ export const LoanList = () => {
         <SimpleGrid cols={4} spacing="md" style={{width:"100%", marginTop:"2vh"}} verticalSpacing="xl">
             {data?.map(elem=>{
                 return(
-                    <LoanCard percent={elem.percent} name={elem.name} key={elem.id} id={elem.id}/>
+                    <LoanCard percent={elem.percent} name={elem.name} key={elem.id} id={elem.id} isActual={elem.isActual}/>
                 )
             }
             )}
