@@ -3,7 +3,7 @@ import { Transaction } from "../shared/lib/api/transaction";
 import { formatAmount } from "../shared/lib/js/formatter";
 import { useParams } from "react-router-dom";
 
-export const TransactionBlock = ({id:transactionId, from, to, amount}:Transaction) => {
+export const TransactionBlock = ({id:transactionId, from, amount}:Transaction) => {
     const {id} = useParams()
     return (
         <Card withBorder>

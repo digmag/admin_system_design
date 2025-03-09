@@ -1,8 +1,5 @@
-import { Flex, Title, Box, Text, Group, Button, SimpleGrid } from "@mantine/core"
-import { useBlockUserMutation, useGetUserQuery, useGetUsersBillsQuery } from "../shared/lib/api/clients"
+import { Flex, Title, Box, Group, Button, SimpleGrid } from "@mantine/core"
 import { useNavigate, useParams } from "react-router-dom"
-import { UsersBills } from "../widgets/usersBills/BillsList"
-import { toast } from "react-toastify"
 import { useGetAllTransactionsQuery } from "../shared/lib/api/transaction"
 import { TransactionBlock } from "../entities/transaction"
 
