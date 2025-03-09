@@ -3,14 +3,15 @@ import { RegistrationFormProps, RegistrationResponse } from "./data"
 
 const registration = injectToApi({
     endpoints: builder=>({
-        registration: builder.query<RegistrationResponse,RegistrationFormProps>({
+        registration: builder.mutation<RegistrationResponse,RegistrationFormProps>({
             query: body=>({
                 url: '/api/employee/client/registration',
                 method: 'POST',
                 body: body
-            })
+            }),
+            invalidatesTags: ["CLIENTS"]
         })
     })
 })
 
-export const {useLazyRegistrationQuery}=registration;
+export const {useRegistrationMutation}=registration;

@@ -2,13 +2,13 @@ import { Button, PasswordInput, Select, TextInput } from "@mantine/core"
 import { useForm } from "react-hook-form"
 import { RegistrationFormProps } from "./api/data"
 import { FormItem } from "../../shared/ui/templates/formItem"
-import { useLazyRegistrationQuery } from "./api"
+import { useRegistrationMutation } from "./api"
 import { data } from "react-router-dom"
 import { toast } from "react-toastify"
 
 
 export const RegistrationForm = ()=>{
-    const [trigger] = useLazyRegistrationQuery()
+    const [trigger] = useRegistrationMutation()
     const {control, handleSubmit, formState:{isValid}} = useForm<RegistrationFormProps>({
         defaultValues: {
             email : "",
