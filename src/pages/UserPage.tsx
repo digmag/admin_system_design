@@ -1,11 +1,12 @@
 import { Flex, Title, Box, Text, Group, Button } from "@mantine/core"
 import { useBlockUserMutation, useGetUserQuery, useGetUsersBillsQuery } from "../shared/lib/api/clients"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { UsersBills } from "../widgets/usersBills/BillsList"
 import { toast } from "react-toastify"
 
 export const UserPage = () => {
     const {id}=useParams()
+    const nav = useNavigate()
     const {data, isLoading}=useGetUserQuery(id!)
     const [trigger] = useBlockUserMutation();
     if(isLoading){
@@ -28,14 +29,16 @@ export const UserPage = () => {
             <Box style={{width:"80%"}}>
                 <Group style={{justifyContent:"space-between"}}>
                     <Title> Пользователь: {data?.email}</Title>
-                    {data?.active&&
-                        <Button color="red" onClick={onClick}>Заблокировать</Button>
-                    }
+                    <Group>
+                        {data?.active&&
+                            <Button color="red" onClick={onClick}>Заблокировать</Button>
+                        }
+                        <Button color="indigo" onClick={()=>nav(-1)}>Назад</Button>
+                    </Group>
                 </Group>
                 {!data?.active&&
                     <Text fz="xl">Статус: Заблокирован</Text>
                 }
-                <Title>Счета: </Title>
                 <UsersBills/>
             </Box>
         </Flex>

@@ -5,8 +5,8 @@ import { Link } from "react-router-dom"
 export const BillCard = ({type, amount, status, name, id}: Omit<Bill, "userId">) => {
     let billType="";
     let billStatus="";
-    if(type==="NORMAL"){billType="Стандартный"}
-    else if(type ==="CREDIT"){billType="Кредит"}
+    if(type==="NORMAL"){billType="Основной"}
+    else if(type ==="CREDIT"){billType="Кредитный"}
     else{billType="Сберегательный"}
     if(status==="OPEN"){billStatus="Открыт"}
     else if(status ==="BLOCKED"){billStatus="Заблокирован"}

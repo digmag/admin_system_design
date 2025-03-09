@@ -1,17 +1,18 @@
-import { Flex, Title, Box, Text, Group, Button } from "@mantine/core"
+import { Flex, Title, Box, Text, Group, Button, SimpleGrid } from "@mantine/core"
 import { useBlockUserMutation, useGetUserQuery, useGetUsersBillsQuery } from "../shared/lib/api/clients"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { UsersBills } from "../widgets/usersBills/BillsList"
 import { toast } from "react-toastify"
 import { useGetAllTransactionsQuery } from "../shared/lib/api/transaction"
+import { TransactionBlock } from "../entities/transaction"
 
 export const Transaction = () => {
     const {id}=useParams()
     const {data, isLoading} = useGetAllTransactionsQuery(id!);
+    const nav = useNavigate()
     if(isLoading){
         return(<h1>Загрузка</h1>)
     }
-    console.log(data)
     return (
         <Flex gap="xl"
         justify="flex-start"
@@ -21,8 +22,22 @@ export const Transaction = () => {
             <Box style={{width:"80%"}}>
                 <Group style={{justifyContent:"space-between"}}>
                     <Title> Список транзакций счета</Title>
+                    <Button color="indigo" onClick={()=>nav(-1)}>Назад</Button>
                 </Group>
             </Box>
+            <SimpleGrid cols={1} style={{width:'70%'}}>
+            {data?.length!==0&& data !== undefined?data.map(transaction => {
+                return (
+                    <TransactionBlock 
+                    id={transaction.id}
+                    from={transaction.from}
+                    to={transaction.to}
+                    amount={transaction.amount}
+                    key={transaction.id}
+                    />
+                )
+            }): <h1 style={{width:"100%"}}>На данном счету еще нет транзакций</h1>}
+            </SimpleGrid>
         </Flex>
     )
 }

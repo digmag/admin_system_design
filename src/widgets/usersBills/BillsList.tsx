@@ -13,12 +13,17 @@ export const UsersBills = () => {
     }
     console.log(data)
   return (
-    <SimpleGrid cols={2} spacing="md" style={{width:"100%", marginTop:"2vh"}} verticalSpacing="xl">
-        {data?.map(elem=>{
-            return(
-                <BillCard name={elem.name} type={elem.type} amount={elem.amount} status={elem.status} key={elem.id} id={elem.id}/>
+    <>
+        {data?.length!==0&& data !== undefined ?
+        <SimpleGrid cols={2} spacing="md" style={{width:"100%", marginTop:"2vh"}} verticalSpacing="xl">
+            {data?.map(elem=>{
+                return(
+                    <BillCard name={elem.name} type={elem.type} amount={elem.amount} status={elem.status} key={elem.id} id={elem.id}/>
+                )}
             )}
-        )}
-    </SimpleGrid>
+        </SimpleGrid>:
+        <h1>У данного пользователя еще нет счетов</h1>
+        }
+    </>
   );
 };
