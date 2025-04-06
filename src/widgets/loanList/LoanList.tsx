@@ -1,15 +1,10 @@
-import { Button, TextInput, PasswordInput, Container, Flex, SimpleGrid } from "@mantine/core";
-import AutorizationForm from "../../features/autorization";
-import { useParams } from "react-router-dom";
-import { useGetUsersBillsQuery } from "../../shared/lib/api/clients";
-import { BillCard } from "../../entities/billCard";
+import { SimpleGrid } from "@mantine/core";
 import { useGetAllLoansQuery } from "../../shared/lib/api/loans";
 import { LoanCard } from "../../entities/loanCard";
 
 
 export const LoanList = () => {
     const {data, isLoading} = useGetAllLoansQuery()
-    console.log(data)
     if(isLoading){
         return <h1>Загрузка</h1>
     }

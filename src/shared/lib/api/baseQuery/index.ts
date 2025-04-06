@@ -1,7 +1,9 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 
 
-export const baseUrl = 'http://185.103.70.190:8080';
+const url = '185.103.70.190';
+const urlLocalhost = 'localhost';
+export const baseUrl = `http://${urlLocalhost}:8080`;
 export const baseQueryWithHeaders = fetchBaseQuery({
     baseUrl: baseUrl,
     prepareHeaders(headers){

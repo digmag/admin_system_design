@@ -7,19 +7,18 @@ const HeaderSimple = () => {
   
   return (
     <Header height={{ base: 50, md: 70 }} p="md">
-      <Container>
         <Flex>
-          <Group sx={{width: "50%"}}>
+          <Group sx={{width: "50%", justifyContent:'center'}}>
             <Title order={2}>Кусь-Банк</Title>
           </Group>
           <Box justify="flex-end" gap={"xl"} align={"center"} sx={{ flexGrow: 1 , width: "50%"}}>
             <Group position="right">
               {isAuth?
                 <>
-                  <Button component={Link} to="/register" variant="filled" size="md" radius={"md"} color="indigo">
+                  <Button component={Link} to="/register" variant="filled" size="md" radius={"md"} color="indigo" style={{marginRight:'1rem'}}>
                     Регистрация пользователя
                   </Button>
-                  <Button component={Link} to="/" variant="filled" size="md" radius={"md"} color="red" onClick={()=>{
+                  <Button component={Link} to="/" variant="filled" size="md" radius={"md"} color="red" style={{marginRight:'2rem'}} onClick={()=>{
                     sessionStorage.clear()
                     localStorage.clear()
                     setIsAuth(false)
@@ -34,7 +33,6 @@ const HeaderSimple = () => {
             </Group>
           </Box>
         </Flex>
-      </Container>
     </Header>
   );
 };

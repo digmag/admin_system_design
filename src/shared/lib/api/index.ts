@@ -6,7 +6,7 @@ export const api = createApi({
     reducerPath: 'userApi',
     baseQuery: baseQueryWithHeaders,
     endpoints: ()=>({}),
-    tagTypes: ["CLIENTS", "CLIENT", "BILLS", "LOANS", "TRANSACTION"]
+    tagTypes: ["CLIENTS", "CLIENT", "BILLS", "LOANS", "TRANSACTION", "THEME"]
 })
 
 export const injectToApi = <T extends EndpointDefinitions>(injection: Parameters<typeof api.injectEndpoints<T>>[0])=>{
