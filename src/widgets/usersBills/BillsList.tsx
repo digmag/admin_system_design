@@ -5,7 +5,6 @@ import { BillCard } from "../../entities/billCard";
 
 export const UsersBills = ({ searchQuery }:{searchQuery:string}) => {
     const { id } = useParams();
-    console.log(searchQuery)
     const { data, isLoading } = useGetUsersBillsQuery(id!);
 
     if (isLoading) {
