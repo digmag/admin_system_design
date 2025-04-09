@@ -1,6 +1,7 @@
 import { Card, Group, Text } from "@mantine/core"
 import { Client } from "../shared/lib/api/clients"
 import { Link } from "react-router-dom"
+import { useState } from "react";
 
 export const UserCard = ({id, email, status, active}:Client) => {
     return(

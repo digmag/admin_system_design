@@ -1,12 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import { Clients } from "../pages/Clients";
 import { useAuthProvider } from "../shared/lib/providers/AuthProvider";
-import { UserPage } from "../pages/UserPage";
-import { Loans } from "../pages/LoanPage";
-import { Transaction } from "../pages/Transaction";
+import { lazy } from "react";
+
+const Home = lazy(()=>import ("../pages/Home"))
+const Login = lazy(()=>import ("../pages/Login"))
+const Clients = lazy(()=>import ("../pages/Clients"))
+const UserPage = lazy(()=>import ("../pages/UserPage"))
+const Loans = lazy(()=>import ("../pages/LoanPage"))
+const Transaction = lazy(()=>import ("../pages/Transaction"))
+const Register = lazy(()=>import ("../pages/Register"))
+const LoginFinish = lazy(()=>import ("../pages/LoginFinish"))
+
 
 const Router = () => {
     const { isAuth } = useAuthProvider()
@@ -18,6 +22,7 @@ const Router = () => {
             <Route path="/user/:id" element={<UserPage/>}/>
             <Route path="/loans" element={<Loans/>}/>
             <Route path="/bill/:id/transactions" element={<Transaction/>}/>
+            <Route path="/login/finish" element={<LoginFinish/>}/>
             <Route path="*" element={<Home />} />
         </Routes>
 )};

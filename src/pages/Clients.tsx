@@ -2,7 +2,7 @@ import { Flex } from "@mantine/core"
 import { useGetAllClientsQuery } from "../shared/lib/api/clients"
 import { UserCard } from "../entities/userCard"
 
-export const Clients = () => {
+const Clients = () => {
     const {data, isLoading}=useGetAllClientsQuery()
     if(isLoading){
         return <h1>Загрузка</h1>
@@ -21,3 +21,5 @@ export const Clients = () => {
         </Flex>
     )
 }
+
+export default Clients;

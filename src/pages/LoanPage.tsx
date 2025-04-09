@@ -3,7 +3,7 @@ import { useDisclosure } from '@mantine/hooks'
 import { LoanList } from "../widgets/loanList/LoanList"
 import { CreateLoanModal } from "../entities/createLoanModal";
 
-export const Loans = () => {
+const Loans = () => {
     const [opened, { open, close }] = useDisclosure(false);
     return (
         <>
@@ -24,3 +24,5 @@ export const Loans = () => {
         </>
     )
 }
+
+export default Loans;

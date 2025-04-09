@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useGetAllTransactionsQuery } from "../shared/lib/api/transaction"
 import { TransactionBlock } from "../entities/transaction"
 
-export const Transaction = () => {
+const Transaction = () => {
     const {id}=useParams()
     const {data, isLoading} = useGetAllTransactionsQuery(id!);
     const nav = useNavigate()
@@ -38,3 +38,5 @@ export const Transaction = () => {
         </Flex>
     )
 }
+
+export default Transaction;
