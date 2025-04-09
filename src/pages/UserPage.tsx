@@ -4,17 +4,10 @@ import { useNavigate, useParams } from "react-router-dom"
 import { UsersBills } from "../widgets/usersBills/BillsList"
 import { toast } from "react-toastify"
 
-<<<<<<< Updated upstream
 export const UserPage = () => {
     const {id}=useParams()
     const nav = useNavigate()
     const {data, isLoading}=useGetUserQuery(id!)
-=======
-const UserPage = () => {
-    const { id } = useParams();
-    const nav = useNavigate();
-    const { data, isLoading } = useGetUserQuery(id!);
->>>>>>> Stashed changes
     const [trigger] = useBlockUserMutation();
     if(isLoading){
         return <h1>Загрузка</h1>
@@ -49,12 +42,5 @@ const UserPage = () => {
                 <UsersBills/>
             </Box>
         </Flex>
-<<<<<<< Updated upstream
     )
 }
-=======
-    );
-};
-
-export default UserPage;
->>>>>>> Stashed changes

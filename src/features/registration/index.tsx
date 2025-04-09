@@ -3,12 +3,13 @@ import { useForm } from "react-hook-form"
 import { RegistrationFormProps } from "./api/data"
 import { FormItem } from "../../shared/ui/templates/formItem"
 import { useRegistrationMutation } from "./api"
-import { data } from "react-router-dom"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router"
 
 
 export const RegistrationForm = ()=>{
     const [trigger] = useRegistrationMutation()
+    const nav = useNavigate()
     const {control, handleSubmit, formState:{isValid}} = useForm<RegistrationFormProps>({
         defaultValues: {
             email : "",
@@ -20,10 +21,11 @@ export const RegistrationForm = ()=>{
         trigger(values).then(response=>{
             console.log(response);
             if(response.error){
-                toast.error("Не удалось зарегистрироваться")
+                toast.error("Не удалось зарегистрировать пользователя")
             }
             else{
-                toast.success("Зарегистрировали")
+                toast.success("Удачно зарегистрировали пользователя")
+                nav(`/`)
             }
         })
     }
@@ -36,7 +38,7 @@ export const RegistrationForm = ()=>{
                 render={({
                     field: {value, ...rst}
                 })=>{
-                    return (<TextInput label="Email" placeholder="Введите email" defaultValue={value} {...rst}/>)
+                    return (<TextInput label="Логин" placeholder="Введите логин" defaultValue={value} {...rst}/>)
                 }}
             />
             <FormItem
@@ -66,7 +68,7 @@ export const RegistrationForm = ()=>{
                     )
                 }}
             />
-            <Button fullWidth mt="sm" variant="filled" size="md" radius={"md"} color="indigo" disabled={!isValid} type="submit">Зарегистрироваться</Button>
+            <Button fullWidth mt="sm" variant="filled" size="md" radius={"md"} color="indigo" disabled={!isValid} type="submit">Зарегистрировать</Button>
         </form>
     )
 }

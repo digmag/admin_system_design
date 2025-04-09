@@ -9,6 +9,7 @@ export interface LoanResponce{
     id:string
     name: string
     percent: number
+    isActual: boolean
 }
 
 const loans = injectToApi({
