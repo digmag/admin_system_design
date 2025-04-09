@@ -23,13 +23,9 @@ const HeaderSimple = () => {
                   <Button component={Link} to="/register" variant="filled" size="md" radius={"md"} color="indigo">
                     Регистрация пользователя
                   </Button>
-<<<<<<< Updated upstream
-                  <Button component={Link} to="/" variant="filled" size="md" radius={"md"} color="red" onClick={()=>{
-=======
                   <Button component={Link} to="/" variant="filled" size="md" radius={"md"} color="red" style={{marginRight:'2rem'}} onClick={()=>{
                     setThemeTrigger({theme:localStorage.getItem('theme')!})
                     setChecked(false)
->>>>>>> Stashed changes
                     sessionStorage.clear()
                     localStorage.clear()
                     setIsAuth(false)
