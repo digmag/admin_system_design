@@ -15,3 +15,4 @@ const transactions = injectToApi({
 })
 
 export const {useGetAllTransactionsQuery}=transactions
+export type { Transaction } from './data'
