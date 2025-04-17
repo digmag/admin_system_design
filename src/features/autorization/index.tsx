@@ -1,36 +1,9 @@
-import { Button, TextInput, PasswordInput, Container } from "@mantine/core";
+import { Button, TextInput, PasswordInput } from "@mantine/core";
 import { FormItem } from "../../shared/ui/templates/formItem";
-import { useLazyAutorizationQuery } from "./api";
-import { useForm } from "react-hook-form";
-import { AutorizationFormProps } from "./api/data";
-import { toast } from "react-toastify"
-import { useAuthProvider } from "../../shared/lib/providers/AuthProvider";
-import { login } from "../../shared/lib/slice/authSlice";
-import { useNavigate } from "react-router-dom";
-
-
+import { useLogin } from "./hooks";
 
 const AutorizationForm = () => {
-    const [trigger] = useLazyAutorizationQuery()
-    const nav = useNavigate();
-    const {control, handleSubmit, formState:{isValid}} = useForm<AutorizationFormProps>({
-        defaultValues: {
-            email : "",
-            password: "",
-        }
-    })
-    const {setIsAuth} = useAuthProvider()
-    const onSubmit = (values: AutorizationFormProps) =>{
-        trigger(values).unwrap().then(data=>{
-            localStorage.setItem("refresh", data.refreshToken)
-            sessionStorage.setItem("access", data.accessToken)
-            setIsAuth(true)
-            nav(`/`)
-            toast.success("Успешно вошли")
-        }).catch(error=>{
-            toast.error("Не удалось войти")
-        })
-    }
+    const {handleSubmit, onSubmit, control, isValid} = useLogin();
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
         <FormItem 

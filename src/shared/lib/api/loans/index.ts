@@ -1,16 +1,5 @@
 import { injectToApi } from ".."
-
-export interface Loan{
-    loanName: string
-    percent: number
-}
-
-export interface LoanResponce{
-    id:string
-    name: string
-    percent: number
-    isActual: boolean
-}
+import { Loan, LoanResponce } from "./data"
 
 const loans = injectToApi({
     endpoints: builder=>({

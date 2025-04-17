@@ -1,9 +1,5 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react"
-
-interface AuthContextProps { 
-    isAuth: boolean
-    setIsAuth: (isAuth: boolean) => void
-}
+import { AuthContextProps } from "./data"
 
 export const AuthContext = createContext<AuthContextProps | undefined> (undefined)
 

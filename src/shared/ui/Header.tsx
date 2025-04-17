@@ -1,14 +1,9 @@
 import { Group, Button, Title, Container, Flex, Header, Box, NavLink } from "@mantine/core";
 import { Link } from "react-router-dom";
-import { useAuthProvider } from "../lib/providers/AuthProvider";
-import { useSetThemeMutation } from "../lib/api/theme";
-import { useThemeProvider } from "../lib/providers/ThemeProvider";
+import { functionGetHeaderInfo } from "../lib/js/functions";
 
 const HeaderSimple = () => {
-    const {isAuth, setIsAuth}=useAuthProvider()
-    const [setThemeTrigger] = useSetThemeMutation();
-    const {checked, setChecked} = useThemeProvider();
-  
+  const {isAuth, setThemeTrigger, setChecked, setIsAuth} = functionGetHeaderInfo();
   return (
     <Header height={{ base: 50, md: 70 }} p="md">
         <Flex>

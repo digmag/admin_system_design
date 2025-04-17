@@ -5,30 +5,11 @@ import { FormItem } from "../../shared/ui/templates/formItem"
 import { useRegistrationMutation } from "./api"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router"
+import { useRegister } from "./hooks"
 
 
 export const RegistrationForm = ()=>{
-    const [trigger] = useRegistrationMutation()
-    const nav = useNavigate()
-    const {control, handleSubmit, formState:{isValid}} = useForm<RegistrationFormProps>({
-        defaultValues: {
-            email : "",
-            password: "",
-            status: "USER"
-        }
-    })
-    const onSubmit = (values: RegistrationFormProps) =>{
-        trigger(values).then(response=>{
-            console.log(response);
-            if(response.error){
-                toast.error("Не удалось зарегистрировать пользователя")
-            }
-            else{
-                toast.success("Удачно зарегистрировали пользователя")
-                nav(`/`)
-            }
-        })
-    }
+    const {handleSubmit, onSubmit, control, isValid} = useRegister();
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <FormItem 

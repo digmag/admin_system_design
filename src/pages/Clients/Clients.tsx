@@ -1,19 +1,15 @@
 import { Flex, Input } from "@mantine/core"
-import { useGetAllClientsQuery } from "../shared/lib/api/clients"
-import { UserCard } from "../entities/userCard"
+import { useGetAllClientsQuery } from "../../shared/lib/api/clients"
+import { UserCard } from "../../entities/userCard"
 import { IconAt } from '@tabler/icons-react';
 import { useState } from "react";
+import { useClients } from "./hooks";
 
 const Clients = () => {
-    const {data, isLoading}=useGetAllClientsQuery()
-    const [search, setSearch] = useState("")
+    const {isLoading, filteredUsers, search, setSearch} = useClients();
     if(isLoading){
         return <h1>Загрузка</h1>
     }
-
-    const filteredUsers = data?.filter(user =>
-        user.email.toLowerCase().includes(search.toLowerCase())
-    );
     return (
         <Flex gap="xl"
         justify="center"

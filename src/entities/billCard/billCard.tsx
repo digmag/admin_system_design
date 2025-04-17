@@ -1,16 +1,10 @@
 import { Card, Group, SimpleGrid, Text, Title } from "@mantine/core"
-import { Bill, Client } from "../shared/lib/api/clients"
+import { Bill, Client } from "../../shared/lib/api/clients"
 import { Link } from "react-router-dom"
+import { functionBillCard } from "../../shared/lib/js/functions"
 
 export const BillCard = ({type, amount, status, name, id}: Omit<Bill, "userId">) => {
-    let billType="";
-    let billStatus="";
-    if(type==="NORMAL"){billType="Основной"}
-    else if(type ==="CREDIT"){billType="Кредитный"}
-    else{billType="Сберегательный"}
-    if(status==="OPEN"){billStatus="Открыт"}
-    else if(status ==="BLOCKED"){billStatus="Заблокирован"}
-    else{billStatus="Закрыт"}
+    const {billType, billStatus} = functionBillCard(type, status);
     return(
         <Link to={`/bill/${id}/transactions`} style={{width:"100%", textDecoration:"none"}}>
             <Card style={{width:"100%"}} withBorder>

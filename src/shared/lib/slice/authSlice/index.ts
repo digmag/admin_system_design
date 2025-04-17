@@ -1,13 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AuthSliceProps } from "./data";
 
-interface AuthSliceProps{
-    isAuth: boolean
-}
-
-const initialState : AuthSliceProps = {
+export const initialState : AuthSliceProps = {
     isAuth: false
 }
-
 export const authSlice = createSlice({
     name: 'authSlice',
     initialState,

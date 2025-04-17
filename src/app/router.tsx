@@ -4,10 +4,10 @@ import { lazy } from "react";
 
 const Home = lazy(()=>import ("../pages/Home"))
 const Login = lazy(()=>import ("../pages/Login"))
-const Clients = lazy(()=>import ("../pages/Clients"))
-const UserPage = lazy(()=>import ("../pages/UserPage"))
+const Clients = lazy(()=>import ("../pages/Clients/Clients"))
+const UserPage = lazy(()=>import ("../pages/UserPage/UserPage"))
 const Loans = lazy(()=>import ("../pages/LoanPage"))
-const Transaction = lazy(()=>import ("../pages/Transaction"))
+const Transaction = lazy(()=>import ("../pages/Transaction/Transaction"))
 const Register = lazy(()=>import ("../pages/Register"))
 const LoginFinish = lazy(()=>import ("../pages/LoginFinish"))
 

@@ -1,8 +1,5 @@
 import { injectToApi } from ".."
-
-export interface Theme{
-    theme: string
-}
+import { Theme } from "./data"
 
 const theme = injectToApi({
     endpoints: builder=>({

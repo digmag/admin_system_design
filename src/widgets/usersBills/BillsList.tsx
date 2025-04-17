@@ -1,7 +1,7 @@
 import { SimpleGrid } from "@mantine/core";
 import { useParams } from "react-router-dom";
 import { useGetUsersBillsQuery } from "../../shared/lib/api/clients";
-import { BillCard } from "../../entities/billCard";
+import { BillCard } from "../../entities/billCard/billCard";
 
 export const UsersBills = ({ searchQuery }:{searchQuery:string}) => {
     const { id } = useParams();

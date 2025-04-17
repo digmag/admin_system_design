@@ -1,9 +1,5 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react"
-
-interface ThemeContextProps { 
-    checked: boolean
-    setChecked: (checked: boolean) => void
-}
+import { ThemeContextProps } from "./data"
 
 export const ThemeContext = createContext<ThemeContextProps | undefined> (undefined)
 

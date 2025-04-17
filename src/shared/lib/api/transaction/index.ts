@@ -1,12 +1,6 @@
 import { injectToApi } from ".."
-import { Bill } from "../clients"
-
-export interface Transaction{
-    id:string
-    from: Bill
-    to: Bill
-    amount: number
-}
+import { Bill } from "../clients/data"
+import { Transaction } from "./data"
 
 const transactions = injectToApi({
     endpoints: builder=>({

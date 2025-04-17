@@ -1,27 +1,14 @@
 import { Button, Container, Modal, PasswordInput, Select, Text, TextInput, Title } from "@mantine/core"
-import { CreateLoanModalProps } from "../shared/lib/api/loans/data"
-import { FormItem } from "../shared/ui/templates/formItem"
-import { Loan, useCreateLoanMutation } from "../shared/lib/api/loans"
+import { CreateLoanModalProps } from "../../shared/lib/api/loans/data"
+import { FormItem } from "../../shared/ui/templates/formItem"
+import { Loan, useCreateLoanMutation } from "../../shared/lib/api/loans"
 import { useForm } from "react-hook-form"
 import { toast } from "react-toastify"
+import { useLoanModel } from "./hooks"
 
 
 export const CreateLoanModal= ({ opened, onClose }: CreateLoanModalProps) =>{
-        const [trigger] = useCreateLoanMutation()
-        const {control, handleSubmit, formState:{isValid}} = useForm<Loan>({
-            defaultValues: {
-                loanName : "",
-                percent: 0
-            }
-        })
-        const onSubmit = (values: Loan) =>{
-            trigger({loanName:values.loanName, percent:Number(values.percent)}).unwrap().then(()=>{
-                toast.success("Успешно добавлен тариф")
-                onClose()
-            }).catch(error=>{
-                toast.error("Ошибка в создании тарифа")
-            })
-        }
+    const {handleSubmit, onSubmit, control, isValid} = useLoanModel(onClose);
     return(
         <Modal opened={opened} onClose={onClose}>
             <Text fz="xl">Создание кредитного тарифа</Text>
