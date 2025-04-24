@@ -3,7 +3,7 @@ import { TransactionBlock } from "../../entities/transaction"
 import { useGetAllTransactionsQuery } from "../../shared/lib/api/transaction"
 import { useNavigate, useParams } from "react-router-dom"
 
-export 
+ 
 const Transaction = () => {
     //const {isLoading, data, nav} = useTransaction();
     const {id} = useParams()
