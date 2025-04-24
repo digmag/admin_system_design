@@ -1,12 +1,20 @@
 import { Flex, Title, Box, Group, Button, SimpleGrid } from "@mantine/core"
 import { TransactionBlock } from "../../entities/transaction"
-import { useTransaction } from "./hooks"
+import { useGetAllTransactionsQuery } from "../../shared/lib/api/transaction"
+import { useNavigate, useParams } from "react-router-dom"
 
+export 
 const Transaction = () => {
-    const {isLoading, data, nav} = useTransaction();
+    //const {isLoading, data, nav} = useTransaction();
+    const {id} = useParams()
+    const { data:state, isLoading} = useGetAllTransactionsQuery(id!)
+    const nav = useNavigate()
+    console.log(state?.entities)
     if(isLoading){
         return(<h1>Загрузка</h1>)
     }
+    const data = Object.values(state?.entities || {}).slice()
+    
     return (
         <Flex gap="xl"
         justify="flex-start"

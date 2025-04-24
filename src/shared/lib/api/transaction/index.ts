@@ -3,15 +3,23 @@ import { injectToApi } from ".."
 import { Bill } from "../clients/data"
 import { Transaction } from "./data"
 
-const ws = new WebSocket(`ws://185.103.70.190:8080/api/ws?token=${sessionStorage.getItem('access')}`)
-const transactionAdapter = createEntityAdapter<Transaction>({})
+const token = sessionStorage.getItem('access')
 
+console.log(`ws://185.103.70.190:8080/api/ws/?token=${sessionStorage.getItem('access')}`)
+
+const transactionAdapter = createEntityAdapter<Transaction>({})
+const ws = new WebSocket(`ws://185.103.70.190:8080/api/ws/?token=${sessionStorage.getItem('access')}`) 
+ws.onclose = (e) => console.log(e)
+ws.onerror = e => console.log(e)
 const transactions = injectToApi({
     endpoints: builder=>({
         getAllTransactions: builder.query<EntityState<Transaction, string>, Bill["id"]>({
             query: (id)=> ({
-                url: `/api/employee/bill/${id}/transactions`,
-                method:"GET"
+                url: `/api/core/bill/transactions/${id}`,
+                method:"GET",
+                headers: {
+                    Authorization: `Bearer ${token}` 
+                  }
             }),
             transformResponse(response: Array<Transaction>) {
                 return transactionAdapter.addMany(transactionAdapter.getInitialState(),response)
@@ -19,6 +27,8 @@ const transactions = injectToApi({
             providesTags: result => 
                 result ? [...(result.ids as string[]).map(id => ({ type: 'TRANSACTION' as const, id })), 'TRANSACTION'] : ['TRANSACTION'],
             async onCacheEntryAdded(_, { updateCachedData, cacheDataLoaded, cacheEntryRemoved }){
+                
+                
                 try{
                     await cacheDataLoaded
                     const listner = (event: MessageEvent<any>) => {
@@ -39,6 +49,7 @@ const transactions = injectToApi({
                 }
                 catch {}
                 await cacheEntryRemoved
+                console.log("закрываемся")
                 ws.close()
             }
         })

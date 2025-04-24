@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { Bill } from "../shared/lib/assets/atoms/Bill";
 
 export const TransactionBlock = ({id: transactionId, from, amount}:Transaction) => {
-    console.log("ttr", from, transactionId)
     const {id} = useParams()
     return (
         <Card withBorder>
