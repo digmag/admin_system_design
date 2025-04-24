@@ -6,7 +6,7 @@ export const useWsTransactions = (id: string) => {
 
     return {
         isLoading,
-        data: Object.values(data?.entities||{}).slice()
+        data: data
     }
 }
 

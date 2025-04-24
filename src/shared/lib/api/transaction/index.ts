@@ -5,12 +5,13 @@ import { Transaction } from "./data"
 
 const token = sessionStorage.getItem('access')
 
-console.log(`ws://185.103.70.190:8080/api/ws/?token=${sessionStorage.getItem('access')}`)
+console.log(`ws://185.103.70.190:8080/api/ws?token=${sessionStorage.getItem('access')}`)
 
 const transactionAdapter = createEntityAdapter<Transaction>({})
-const ws = new WebSocket(`ws://185.103.70.190:8080/api/ws/?token=${sessionStorage.getItem('access')}`) 
-ws.onclose = (e) => console.log(e)
-ws.onerror = e => console.log(e)
+const ws = new WebSocket(`ws://185.103.70.190:8080/api/ws?token=${sessionStorage.getItem('access')}`) 
+ws.onopen = e => console.log("открылись", e)
+ws.onclose = (e) => console.log("закрылись",e)
+ws.onerror = e => console.log("ошибка",e)
 const transactions = injectToApi({
     endpoints: builder=>({
         getAllTransactions: builder.query<EntityState<Transaction, string>, Bill["id"]>({
