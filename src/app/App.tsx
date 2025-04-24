@@ -1,11 +1,8 @@
 import { MantineProvider, AppShell } from "@mantine/core";
 import Router from "./router";
 import Header from "../shared/ui/Header";
-import { useEffect, useState } from "react";
-import { useAuthProvider } from "../shared/lib/providers/AuthProvider";
 import MyNavbar from "../shared/ui/Navbar";
 import { ThemeContext } from "../shared/lib/providers/ThemeProvider";
-import { useLazyGetThemeQuery, useSetThemeMutation } from "../shared/lib/api/theme";
 import { useAppHook } from "./hooks";
 
 

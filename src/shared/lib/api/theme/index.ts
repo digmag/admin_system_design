@@ -12,7 +12,7 @@ const theme = injectToApi({
         }),
         setTheme: builder.mutation<Theme, Theme>({
             query: body=>({
-                url: '/api/theme',
+                url: `/api/theme/post?token=${sessionStorage.getItem('access')}`,
                 method: 'POST',
                 body: body
             }),

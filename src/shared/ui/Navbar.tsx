@@ -1,7 +1,6 @@
 import { Navbar, NavLink, Box, Switch, Flex } from "@mantine/core";
-import { Users, Calculator } from 'tabler-icons-react';
+import { Users, Calculator, SunHigh, Moon } from 'tabler-icons-react';
 import { Link } from "react-router-dom";
-import { SunHigh, Moon } from 'tabler-icons-react';
 import { useThemeProvider } from "../lib/providers/ThemeProvider";
 
 

@@ -17,29 +17,31 @@ export const useAppHook = () => {
     useEffect(() =>{
     if(isAuth){
         trigger().unwrap().then(data => {
-        setChecked(data.theme==='dark')
-        localStorage.setItem('theme', data.theme)
+            setChecked(data.theme==='dark')
+            localStorage.setItem('theme', data.theme)
         })
     }
     }, [isAuth])
 
-    useEffect(()=>{
-        const function1 = () => {
-            fetch('http://185.103.70.190:8080/api/theme', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${sessionStorage.getItem('access')}`,
-                },
-                body: JSON.stringify({ theme: theme }),
-                keepalive: true,
-            });
-        }
-        window.addEventListener('unload', function1);
-        return() => {
-            window.removeEventListener('unload', function1);
-        }
-        }, [theme]) //нерабочая штука, нужно будет править
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            const theme = localStorage.getItem("theme");
+            if (theme) {
+                const data = new Blob(
+                    [JSON.stringify({ theme })],
+                    { type: "application/json" }
+                );
+                navigator.sendBeacon(`http://185.103.70.190:8080/api/theme/post?token=${sessionStorage.getItem('access')}`, data);
+            }
+            localStorage.clear()
+            sessionStorage.clear()
+            setChecked(false)
+        }    
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
 
     return{
         checked, setChecked, isAuth

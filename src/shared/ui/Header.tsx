@@ -17,8 +17,8 @@ const HeaderSimple = () => {
                   <Button component={Link} to="/register" variant="filled" size="md" radius={"md"} color="indigo" style={{marginRight:'1rem'}}>
                     Регистрация пользователя
                   </Button>
-                  <Button component={Link} to="/" variant="filled" size="md" radius={"md"} color="red" style={{marginRight:'2rem'}} onClick={()=>{
-                    setThemeTrigger({theme:localStorage.getItem('theme')!})
+                  <Button component={Link} to="/" variant="filled" size="md" radius={"md"} color="red" style={{marginRight:'2rem'}} onClick={async ()=>{
+                    await setThemeTrigger({theme:localStorage.getItem('theme')!})
                     setChecked(false)
                     sessionStorage.clear()
                     localStorage.clear()
@@ -28,7 +28,7 @@ const HeaderSimple = () => {
                   </Button>
                 </>:
                   <Button variant="filled" size="md" radius={"md"} color="indigo" onClick={()=>{
-                    location.href='http://localhost:7000?appId=employee&redirectURI=http://localhost:5173/login/finish'
+                    location.href='http://localhost:7000?appId=employee&redirectURI=http://localhost:5174/login/finish'
                   }}>
                     Вход
                   </Button>
