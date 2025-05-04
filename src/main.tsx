@@ -6,17 +6,18 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./app/App";
 import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from "./shared/lib/providers/AuthProvider";
+import requestPermissions from "./shared/lib/firebase/messaging";
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/firebase-messaging-sw.js')
-    .then((registration) => {
-      console.log('✅ Service Worker зарегистрирован:', registration);
-    })
-    .catch((error) => {
-      console.log('❌ Ошибка регистрации Service Worker:', error);
-    });
-}
-
+// if ('serviceWorker' in navigator) {
+//   navigator.serviceWorker.register('/firebase-messaging-sw.js')
+//     .then((registration) => {
+//       console.log('✅ Service Worker зарегистрирован:', registration);
+//     })
+//     .catch((error) => {
+//       console.log('❌ Ошибка регистрации Service Worker:', error);
+//     });
+// }
+requestPermissions()
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
@@ -29,7 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={true}
-          />
+        />
       </Provider>
     </AuthProvider>
   </React.StrictMode>
