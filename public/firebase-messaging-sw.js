@@ -1,58 +1,41 @@
-// importScripts('https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js');
-// importScripts('https://www.gstatic.com/firebasejs/11.6.1/firebase-app-sw.js');
-// importScripts('https://www.gstatic.com/firebasejs/11.6.1/firebase-messaging.js');
-// importScripts('https://www.gstatic.com/firebasejs/11.6.1/firebase-messaging-swн.js');
+importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js');
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyB39Kh7Dekbv59Uu4n1r0lKJtphgbFqJEg",
-//   authDomain: "bankapplication-25fc2.firebaseapp.com",
-//   projectId: "bankapplication-25fc2",
-//   storageBucket: "bankapplication-25fc2.firebasestorage.app",
-//   messagingSenderId: "64328326974",
-//   appId: "1:64328326974:web:441c39fbe8b49b2642d66f"
-// };
-// console.log("123")
+const firebaseConfig = {
+  apiKey: "AIzaSyC3QK4NgpQgC77tL5JFhk_ctGoxfUIMkfI",
+  authDomain: "test-b5a4e.firebaseapp.com",
+  projectId: "test-b5a4e",
+  storageBucket: "test-b5a4e.firebasestorage.app",
+  messagingSenderId: "32499677931",
+  appId: "1:32499677931:web:b61963d806911509955cae",
+  measurementId: "G-BVRGL3LJJ0"
+};
 
-// // Инициализация Firebase в сервисном воркере
-// firebase.initializeApp(firebaseConfig);
+// Инициализация Firebase в сервисном воркере
+const app = firebase.initializeApp(firebaseConfig);
 
-// const messaging = firebase.messaging();
+const messaging = firebase.messaging(app);
 
-// console.log(messaging);
+const onBackgroundMessage = (payload) => {
+  // Настройка уведомления
+  const notificationTitle = payload.notification?.title || 'Новое сообщение';
+  const notificationOptions = {
+    body: payload.notification?.body || 'У вас новое уведомление',
+    icon: payload.notification?.icon || '/icons/icon-192x192.png',
+    data: payload.data // Передаем дополнительные данные
+  };
 
-// // Запрос разрешения на уведомления
-// Notification.requestPermission().then((permission) => {
-//   if (permission === 'granted') {
-//     console.log('Разрешение на уведомления получено');
+  // Показываем уведомление
+  return self.registration.showNotification(notificationTitle, notificationOptions);
+};
 
-//     if ('serviceWorker' in navigator) {
-//       navigator.serviceWorker.register('/firebase-messaging-sw.js')
-//         .then((registration) => {
-//           console.log('Service Worker зарегистрирован:', registration);
+// Подписываемся на фоновые сообщения
+firebase.messaging().onBackgroundMessage(onBackgroundMessage);
 
-//           messaging.getToken({
-//             vapidKey: 'BLvP1aVrZJjtryd21EZY2WAarCn0SAAO0rnEnJZZyFz__GoBIWBVoSwrEOF3XV5aAoM6Lz4QHW_w7_7UDD4svxs',
-//             serviceWorkerRegistration: registration,
-//           }).then((currentToken) => {
-//             if (currentToken) {
-//               console.log('FCM токен:', currentToken);
-//             } else {
-//               console.warn('Не удалось получить токен.');
-//             }
-//           }).catch((err) => {
-//             console.error('Ошибка получения токена:', err);
-//           });
-
-//         }).catch((err) => {
-//           console.error('Ошибка регистрации Service Worker:', err);
-//         });
-//     }
-//   } else {
-//     console.warn('Пользователь не дал разрешение на уведомления');
-//   }
-// });
-
-// // Ловим входящие сообщения при открытом приложении
-// messaging.onBackgroundMessage((payload) => {
-//   console.log('[firebase-messaging-sw.js] Фоновое сообщение получено:', payload);
-// });
+// Обработчик push-событий (для совместимости)
+self.addEventListener('push', (event) => {
+  if (event.data) {
+    const payload = event.data.json();
+    onBackgroundMessage(payload);
+  }
+});
