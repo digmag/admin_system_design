@@ -5,9 +5,8 @@ import MyNavbar from "../shared/ui/Navbar";
 import { ThemeContext } from "../shared/lib/providers/ThemeProvider";
 import { useAppHook } from "./hooks";
 
-
 const App = () => {
-  const {checked, setChecked, isAuth} = useAppHook();  
+  const {checked, setChecked, isAuth} = useAppHook();
   return(
     <ThemeContext.Provider value={{ checked, setChecked }}>
       <MantineProvider 

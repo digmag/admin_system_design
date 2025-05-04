@@ -43,6 +43,13 @@ export const useAppHook = () => {
         };
     }, []);
 
+    // useEffect(() => {
+    //     requestPermissionAndGetToken().then(token => {
+    //         // Можно отправить токен на бэкенд
+    //         console.log("Token for backend:", token);
+    //     });
+    // }, []);
+
     return{
         checked, setChecked, isAuth
     }

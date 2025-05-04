@@ -7,6 +7,16 @@ import App from "./app/App";
 import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from "./shared/lib/providers/AuthProvider";
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/firebase-messaging-sw.js')
+    .then((registration) => {
+      console.log('✅ Service Worker зарегистрирован:', registration);
+    })
+    .catch((error) => {
+      console.log('❌ Ошибка регистрации Service Worker:', error);
+    });
+}
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
