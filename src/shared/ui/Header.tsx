@@ -9,8 +9,8 @@ const HeaderSimple = () => {
   return (
     <Header height={{ base: 50, md: 70 }} p="md">
       <Flex>
-        <Group sx={{ width: "50%", justifyContent: 'center', alignItems:'center'}}>
-          <img style={{width:'2.5rem'}} src={Kus}/>
+        <Group sx={{ width: "50%", justifyContent: 'center', alignItems: 'center' }}>
+          <img style={{ width: '2.5rem' }} src={Kus} />
           <Title order={2}>Кусь-Банк</Title>
         </Group>
         <Box justify="flex-end" gap={"xl"} align={"center"} sx={{ flexGrow: 1, width: "50%" }}>
