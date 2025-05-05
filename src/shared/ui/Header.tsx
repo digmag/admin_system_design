@@ -2,13 +2,15 @@ import { Group, Button, Title, Container, Flex, Header, Box, NavLink } from "@ma
 import { Link } from "react-router-dom";
 import { functionGetHeaderInfo } from "../lib/js/functions";
 import { deleteToken } from "../lib/firebase/messaging";
+import Kus from '../../shared/lib/assets/icons/kus.svg'
 
 const HeaderSimple = () => {
   const { isAuth, setThemeTrigger, setChecked, setIsAuth } = functionGetHeaderInfo();
   return (
     <Header height={{ base: 50, md: 70 }} p="md">
       <Flex>
-        <Group sx={{ width: "50%", justifyContent: 'center' }}>
+        <Group sx={{ width: "50%", justifyContent: 'center', alignItems:'center'}}>
+          <img style={{width:'2.5rem'}} src={Kus}/>
           <Title order={2}>Кусь-Банк</Title>
         </Group>
         <Box justify="flex-end" gap={"xl"} align={"center"} sx={{ flexGrow: 1, width: "50%" }}>
